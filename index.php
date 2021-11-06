@@ -6,7 +6,7 @@ error_reporting(0);
 //sometimes we only need "referfer".
 
 
-if(count($_GET)==0&&count($_POST)==0&&count($_COOKIE)==0)
+if(count($_GET)==0&&count($_POST)==0)
     exit();
 
 header("Access-Control-Allow-Origin:*");
