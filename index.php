@@ -5,10 +5,10 @@ error_reporting(0);
 
 //sometimes we only need "referfer".
 
-/*
+
 if(count($_GET)==0&&count($_POST)==0&&count($_COOKIE)==0)
-exit();
-*/
+    exit();
+
 header("Access-Control-Allow-Origin:*");
 require_once("load.php");
 require_once("functions.php");
@@ -57,11 +57,9 @@ if ($decoded_cookie_data)
 //判断是否keepsession（判断标准：get或者post或者cookie包含keepsession=1）
 $info['keepsession'] = isKeepSession($info) ? true : false;
 
-//判断是否有参数，没有参数的都是访问index的误报。
-if (count($info['get_data']) > 0)
-    save_xss_record(json_encode($info), $request_time);
-    //发送邮件通知
-    if (MAIL_ENABLE) {
-        require_once("mail.php");
-        @send_mail($info);
-    }
+save_xss_record(json_encode($info), $request_time);
+//发送邮件通知
+if (MAIL_ENABLE) {
+    require_once("mail.php");
+    @send_mail($info);
+}
